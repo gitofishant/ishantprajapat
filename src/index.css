@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #B5FF00; /* Neon Green */
+  --color-primary-dark: #82b800;
+  --color-secondary: #00E5FF; /* Cyan Accent */
+  
+  --color-dark-bg: #181E25; /* Adjusted to Lumara's dark navy background */
+  --color-dark-card: #1B232D; /* Lumara card/input backgrounds */
+  --color-glass-border: rgba(51, 164, 255, 0.2); /* Lumara faint blue border */
+  --color-glass-bg: rgba(27, 35, 45, 0.8);
+  
+  --color-lumara-blue: #4BB6EF;
+  --color-lumara-orange: #DD933E;
+  --color-lumara-pink: #D82E5A;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer utilities {
+  .bg-lumara-gradient {
+    background: linear-gradient(90deg, #4BB6EF 16.75%, #DD933E 50.1%, #D82E5A 138.04%);
+  }
+  .text-lumara-gradient {
+    background: linear-gradient(90deg, #4BB6EF 16.75%, #DD933E 50.1%, #D82E5A 138.04%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-slate-50 font-sans antialiased selection:bg-primary/30 selection:text-white;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(181, 255, 0, 0.04), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(0, 229, 255, 0.04), transparent 25%);
+    background-attachment: fixed;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animated gradient background for Hero */
+.bg-mesh {
+  position: relative;
+}
+
+.bg-mesh::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-glass-bg backdrop-blur-xl border border-glass-border rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)];
+}
+
+/* Input Styles for Stepper */
+.input-elegant {
+  @apply w-full bg-transparent border-b border-white/20 py-3 text-white text-lg placeholder:text-slate-600 focus:outline-none focus:border-primary transition-colors pb-2;
+}
